@@ -86,14 +86,10 @@ WSGI_APPLICATION = 'controlaesadiacsa.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'aesa_database',
-        'USER': 'aesa_database_user',
-        'PASSWORD': '37K48aNMzKZ1iEi9mdrsGiBI9Q8rXylz',
-        'HOST': 'dpg-cjtrf6vhdsdc73fagf90-a.oregon-postgres.render.com',
-        'PORT': '5432', }
-
+    'default': dj_database_url.config(
+        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        conn_max_age=600
+    )
 }
 
 # Password validation
