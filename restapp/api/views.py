@@ -606,9 +606,7 @@ def guardarNoRegistrados(reg):
     try:
         debugPrint("rdeviceID")
         debugPrint(rdeviceID)
-        t0 = datetime.now()
         rdeviceID = deviceID.objects.get(deviceID=rdeviceID)
-        t1 = datetime.now()
         rubicacion = rdeviceID.ubicacion
         debugPrint("Ubicacion")
         debugPrint(rubicacion)
@@ -616,37 +614,24 @@ def guardarNoRegistrados(reg):
             debugPrint("Ubicacion no encontrada en No Registrados")
             rubicacion = "Ubicacion No registrada"
     except:
-        t1 = datetime.now()
         debugPrint(
             "Error en encontrar la ubicacion del deviceID en No Registrados.")
         rubicacion = "Ubicacion No registrada"
 
-    # usersNoRegistrados = NoRegistrados.objects.all()
-    # cantidadactualRegistrada = usersNoRegistrados.count()
-    # debugPrint("Cantidad actual")
-    # debugPrint(cantidadactualRegistrada)
-    t2 = datetime.now()
     nuevoNoRegistrados = NoRegistrados()
-    t3 = datetime.now()
-    # nuevoNoRegistrados.id = cantidadactualRegistrada+1
     nuevoNoRegistrados.ubicacion = rubicacion
     nuevoNoRegistrados.card_id = rcardID
     f_evento = rfecha_evento
     h_evento = rhora_evento
-    t4 = datetime.now()
-    fecha_datetime = datetime.strptime(
-        f_evento+' '+h_evento, '%Y-%m-%d %H:%M:%S')
+    fecha_datetime = datetime.strptime(f_evento+' '+h_evento, '%Y-%m-%d %H:%M:%S')
     zona_horaria = pytz.timezone('America/Lima')
     fecha_y_hora_con_zona_horaria = zona_horaria.localize(fecha_datetime)
-    t5 = datetime.now()
     nuevoNoRegistrados.f_evento = fecha_y_hora_con_zona_horaria.date()
     nuevoNoRegistrados.h_evento = fecha_y_hora_con_zona_horaria.time()
     nuevoNoRegistrados.evento = revento
-    t6 = datetime.now()
     nuevoNoRegistrados.save()
-    t7 = datetime.now()
-    #debugPrint(f"Evento guardado en No Registrados exitoso. {t1-t0} {t2-t1} {t3-t2} {t4-t3} {t5-t4} {t6-t5} {t7-t6}")
-    print(f"Evento guardado en No Registrados exitoso. {t1-t0} {t2-t1} {t3-t2} {t4-t3} {t5-t4} {t6-t5} {t7-t6}")
+    debugPrint("Evento guardado en No Registrados exitoso.")
+    
     return
 
 
@@ -691,14 +676,9 @@ class restappViewSet(ModelViewSet):
                 if (user is None):
                     debugPrint("Usuario no encontrado")
             except:
-                #t1 = datetime.now()
                 guardarHistorialNoRegistrados(reg)
-                #t2 = datetime.now()
                 actualizarLiveDataNoRegistrado(reg)
-                #t3 = datetime.now()
                 guardarNoRegistrados(reg)
-                #t4 = datetime.now()
-
                 
                 debugPrint("Usuario no encontrado except")
                 continue
