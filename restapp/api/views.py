@@ -674,24 +674,21 @@ class restappViewSet(ModelViewSet):
             if DEBUG:
                 debugPrint("-------------")
             try:
-                t0 = datetime.now()
+                #t0 = datetime.now()
                 user = PersonalRegistrado.objects.get(card_id=rcardID)
-                t1 = datetime.now()
-                print(t1-t0)
+                #t1 = datetime.now()
+                #print(t1-t0)
                 if (user is None):
                     debugPrint("Usuario no encontrado")
             except:
-                t1 = datetime.now()
+                #t1 = datetime.now()
                 guardarHistorialNoRegistrados(reg)
-                t2 = datetime.now()
+                #t2 = datetime.now()
                 actualizarLiveDataNoRegistrado(reg)
-                t3 = datetime.now()
+                #t3 = datetime.now()
                 guardarNoRegistrados(reg)
-                t4 = datetime.now()
-                print(t1-t0)
-                print(t2-t1)
-                print(t3-t2)
-                print(t4-t3)
+                #t4 = datetime.now()
+
                 
                 debugPrint("Usuario no encontrado except")
                 continue
