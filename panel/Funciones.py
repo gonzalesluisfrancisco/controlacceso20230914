@@ -103,5 +103,5 @@ def ContrasenaEsFuerte(contrasena):
 
 
 def debugPrint(string):
-     return
-    #print(string)
+     #return
+    print(string)
