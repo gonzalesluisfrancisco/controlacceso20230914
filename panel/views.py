@@ -1332,7 +1332,7 @@ def registrarusuario(request):
             NuevoUsuarioInfo = models.UserInfo(
                 User=NuevoUsuario, DNI=DNI, Telefono=Telefono, SegundoApellido=SegundoApellido)
             NuevoUsuarioInfo.save()
-            debugPrint(Username, Password)
+            debugPrint(f'{Username}, {Password}')
             return JsonResponse({"Estado": "Valido", "Mensaje": "Registrado correctamente, se ha enviado las credenciales al correo electronico"})
         except Exception as e:
             return JsonResponse({"Estado": "Invalido", "Mensaje": f"{str(e)}"})
