@@ -616,6 +616,7 @@ def guardarNoRegistrados(reg):
             debugPrint("Ubicacion no encontrada en No Registrados")
             rubicacion = "Ubicacion No registrada"
     except:
+        t1 = datetime.now()
         debugPrint(
             "Error en encontrar la ubicacion del deviceID en No Registrados.")
         rubicacion = "Ubicacion No registrada"
@@ -644,7 +645,8 @@ def guardarNoRegistrados(reg):
     t6 = datetime.now()
     nuevoNoRegistrados.save()
     t7 = datetime.now()
-    debugPrint(f"Evento guardado en No Registrados exitoso. {t1-t0} {t2-t1} {t3-t2} {t4-t3} {t5-t4} {t6-t5} {t7-t6}")
+    #debugPrint(f"Evento guardado en No Registrados exitoso. {t1-t0} {t2-t1} {t3-t2} {t4-t3} {t5-t4} {t6-t5} {t7-t6}")
+    print(f"Evento guardado en No Registrados exitoso. {t1-t0} {t2-t1} {t3-t2} {t4-t3} {t5-t4} {t6-t5} {t7-t6}")
     return
 
 
