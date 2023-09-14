@@ -1,0 +1,81 @@
+{% extends '../index_master.html' %}
+{% block head %}
+<style>
+  .my-table .paginate_button.current {
+    font-weight: bold !important;
+
+  }
+</style>
+{% endblock%}
+{% block content %}
+<form id="historialForm" action="{%url 'marcacion' %}" method="POST">
+  {% csrf_token %}
+  <div class="right_col" role="main">
+    <h1>Historial de Ingreso/Salida de Personal</h1>
+    <div class="table-responsive">
+      <!--  -->
+      <table border="0" cellspacing="5" cellpadding="5">
+        <tbody>
+          <tr style="padding: 0;">
+            <td style="padding: 0;">Fecha inicial:</td>
+            <td><input type="text" id="min" name="min" class="datepicker"></td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td style="padding: 0;">Fecha final:</td>
+            <td><input type="text" id="max" name="max" class="datepicker"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="calendar" style="display: none;"></div>
+      <div style="height: 20px;"></div>
+      <table id="Marcacion"
+        class="table table-striped table-hover table-secondary my-table">
+        <thead>
+          <tr>
+            <th scope="col" data-bs-column-filter order="desc" hidden>primarykey</th>
+            <th scope="col" data-bs-column-filter order="desc">#</th>
+            <th scope="col" data-bs-column-filter>CardID</th>
+            <th scope="col" data-bs-column-filter>Apellido Paterno</th>
+            <th scope="col" data-bs-column-filter>Apellido Materno</th>
+            <th scope="col" data-bs-column-filter>Nombre</th>
+            <th scope="col" data-bs-column-filter>DNI</th>
+            <th scope="col" data-bs-column-filter>Proyecto</th>
+            <th scope="col" data-bs-column-filter>Cargo</th>
+            <th scope="col" data-bs-column-filter>Area</th>
+            <th scope="col" data-bs-column-filter>Servicio</th>
+            <th scope="col" data-bs-column-filter>Supervision</th>
+            <th scope="col" data-bs-column-filter>Guardia</th>
+            <th scope="col" data-bs-column-filter>Fecha evento</th>
+            <th scope="col" data-bs-column-filter>Hora evento</th>
+            <th scope="col" data-bs-column-filter>Tipo de evento</th>
+            <th scope="col" data-bs-column-filter>Status</th>
+            <th scope="col" data-bs-column-filter>Accion</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    {% if request.user.is_superuser or request.user.is_staff %}
+    <a href="marcacion/agregar" class="btn btn-primary">Agregar registro</a>
+    {% endif %}
+    <div class="form-group row">
+      <div class="col-12 text-right" style="margin-top: 20px;">
+        <button name="submit" type="button" class="btn btn-success"
+          onclick="DescargarExcel()"><i
+            class="fa fa-file-excel"></i>&nbsp;&nbsp;Exportar a excel</button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script
+  src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css"
+  href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+{% load static %}
+<script src="{% static 'marcacion.js' %}"></script>
+{% endblock %}

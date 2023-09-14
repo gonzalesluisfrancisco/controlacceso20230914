@@ -1,0 +1,160 @@
+{% extends '../index_master.html' %}
+
+{% block head %}
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css"
+  rel="stylesheet">
+
+{% endblock%}
+
+{% block content %}
+{% csrf_token %}
+<div class="right_col" role="main">
+  <div class="row">
+    <div class="col-12 pl-0">
+      <h1>Estadísicas de Ingresos y Salidas</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5 pl-0">
+      <div class="row ml-1" style="border: solid;">
+        <div class=" container">
+          <div class="d-flex justify-content-center text-white"
+            style="background-color: rgba(65,114,191,255);">
+            <h2>Filtro por Área</h2>
+          </div>
+          <div class="d-flex m-1 justify-content-center align-items-center">
+            <select name="filtroArea" id="filtroArea"
+              class="custom-select text-center" onchange="filtroArea()">
+              <option value="NINGUNO">NINGUNO</option>
+              {% for item in filtrosArea%}
+              <option value="{{item.area}}">{{item.area}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row ml-1 mt-1"
+        style="border: solid; background-color: rgba(255,255,255,255);">
+        <div class="container">
+          <div class="d-flex justify-content-center">
+            <h2 class="text-center">Ingresos y salidas por turno</h2>
+          </div>
+          <div id="myChartBar"></div>
+        </div>
+      </div>
+      <div class="row ml-1 mt-1"
+        style="border: solid; background-color: rgba(255,255,255,255);">
+        <div class="container">
+          <div class="d-flex justify-content-center">
+            <h2 class="text-center">Cantidad de entradas y salidas por semana</h2>
+          </div>
+          <div id="myChartColumn1" class="mb-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-5 pl-0">
+      <div class="row ml-1" style="border: solid;">
+        <div class=" container">
+          <div class="d-flex justify-content-center text-white"
+            style="background-color: rgba(65,114,191,255);">
+            <h2>Filtro por Servicio</h2>
+          </div>
+          <div class="d-flex m-1 justify-content-center align-items-center">
+            <select name="filtroServicio" id="filtroServicio"
+              class="custom-select text-center" onchange="filtroServicio()">
+              <option value="NINGUNO">NINGUNO</option>
+              {% for item in filtrosServicio%}
+              <option value="{{item.servicio}}">{{item.servicio}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row ml-1 mt-1"
+        style="border: solid; background-color: rgba(255,255,255,255);">
+        <div class="container">
+          <div class="d-flex justify-content-center">
+            <h2 class="text-center">Promedio de horas entrada/salida</h2>
+          </div>
+          <div id="myChartColumn2" class="mb-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2 pl-0">
+      <div class="row ml-1" style="border: solid;">
+        <div class=" container">
+          <div class="d-flex justify-content-center text-white"
+            style="background-color: rgba(65,114,191,255);">
+            <h2>Filtro por fecha</h2>
+          </div>
+          <div class="d-flex m-1 justify-content-center align-items-center">
+            <input type="text" class="custom-select text-center"
+              name="datepicker"
+              id="datepicker" onchange="filtroMesAnho()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row ml-1 mt-1" style="border: solid;">
+        <div class=" container">
+          <div class="d-flex justify-content-center text-white"
+            style="background-color: rgba(65,114,191,255);">
+            <h2>Filtro por cargo</h2>
+          </div>
+          <div class="d-flex m-1 justify-content-center align-items-center">
+            <select name="filtroCargo" id="filtroCargo"
+              class="custom-select text-center" onchange="filtroCargo()">
+              <option value="NINGUNO">NINGUNO</option>
+              {% for item in filtroCargo%}
+              <option value="{{item.cargo}}">{{item.cargo}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row ml-1 mt-1" style="border: solid;">
+        <div class=" container">
+          <div class="d-flex justify-content-center text-white"
+            style="background-color: rgba(65,114,191,255);">
+            <h2>Filtro por guardia</h2>
+          </div>
+          <div class="d-flex m-1 justify-content-center align-items-center">
+            <select name="filtroGuardia" id="filtroGuardia"
+              class="custom-select text-center">
+              <option value="NINGUNO">NINGUNO</option>
+              {% for item in filtroGuardia%}
+              <option value="{{item.guardia}}">{{item.guardia}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="BoxIt" hidden>
+    <div class="div-dropdown" style="height:25px;">
+      <select id="selected_variable" name="selected_variable"></select>
+      <div id="results_selection"></div>
+    </div>
+    <h2 id="values">{{ values }}</h2>
+  </div>
+</div>
+
+{% endblock%}
+
+{% block scripts %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+{%load static%}
+<script src="{%static 'dashboard.js'%}"></script>
+{% endblock %}

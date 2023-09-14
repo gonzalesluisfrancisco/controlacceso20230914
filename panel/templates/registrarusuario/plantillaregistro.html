@@ -1,0 +1,121 @@
+{% extends '../index_master.html' %}
+{%load static%}
+{% block content %}
+<div class="right_col" role="main">
+    {%if r2%}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>r2</strong> Revise todos los campos.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    <h1>Registrar nueva cuenta</h1>
+    <form action="agregar" method="POST">
+        {% csrf_token %}
+        <div style="height: 30px;"></div>
+        <div class="form-group row">
+            <label for="cardid" class="col-3 col-form-label"
+                style="font-size: 20px; text-align: right;">Nombre(s)</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-address-card" style="font-size: 20px;"></i>
+                    </div>
+                    <input id="nombre" name="nuevousuario" placeholder="Ingresar nombre" type="text" required="required"
+                        class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="nombre" class="col-3 col-form-label" style="font-size: 20px; text-align: right;">Primer
+                Apellido</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-address-card" style="font-size: 20px;"></i>
+                    </div>
+                    <input id="apellido1" name="nuevousuario" placeholder="Ingresar primer apellido" type="text"
+                        required="required" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="nombre" class="col-3 col-form-label" style="font-size: 20px; text-align: right;">Segundo
+                Apellido</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-address-card" style="font-size: 20px;"></i>
+                    </div>
+                    <input id="apellido2" name="nuevousuario" placeholder="Ingresar segundo apellido" type="text"
+                        required="required" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="empresa" class="col-3 col-form-label" style="font-size: 20px; text-align: right;">DNI</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-address-card" style="font-size: 20px;"></i>
+                    </div>
+                    <input id="dni" name="nuevousuario" placeholder="Ingresar numero de DNI" type="text"
+                        class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="apellido" class="col-3 col-form-label"
+                style="font-size: 20px; text-align: right;">Correo</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-envelope" style="font-size: 20px;"></i>
+                    </div>
+                    <input id="correo" name="nuevousuario" placeholder="Ingresar correo electronico" type="text"
+                        class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="empresa" class="col-3 col-form-label"
+                style="font-size: 20px; text-align: right;">Telefono</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-phone-alt" style="font-size: 20px;"></i>
+                    </div>
+                    <input id="telefono" name="nuevousuario" placeholder="Ingresar numero de telefono" type="text"
+                        class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="empresa" class="col-3 col-form-label" style="font-size: 20px; text-align: right;">Tipo de
+                usuario</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-user-tag" style="font-size: 20px;"></i>
+                    </div>
+                    <select id="rol" name="nuevousuario" placeholder="Ingresar numero de telefono" type="text"
+                        class="form-control">
+                        <option>Solo observador</option>
+                        <option>Observador y registro de planilla</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+                <button name="submit" type="button" class="btn btn-primary" onclick="RegistrarUsuario()"><i
+                        class="fa fa-user-plus"></i>&nbsp;&nbsp;Registrar Usuario</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock%}
+{%block scripts%}
+<script src="{% static 'registrarusuario.js' %}"></script>
+{%endblock%}

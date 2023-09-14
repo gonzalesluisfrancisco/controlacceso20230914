@@ -1,0 +1,345 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<div class="right_col" role="main">
+  <h1>Actualizar Personal</h1>
+
+  <form action="actualizar" method="POST">
+    {% csrf_token %}
+    <!-- <div class="form-group row">
+            <label for="id" class="col-4 col-form-label">ID Usuario</label> 
+            <div class="col-8">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-list-ol"></i>
+                </div> 
+                <select id="id" name="id">
+                
+                    <option value="{{personalregistrado.id}}">{{personalregistrado.id}}</option>    
+                
+                </select>
+              </div>
+            </div>
+        </div> -->
+    <div class="form-group row" hidden>
+      <label for="nombre" class="col-2 col-form-label text-right">Numero de persona</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-hashtag"></i>
+          </div>
+          <input id="id" name="nombre" placeholder="Numero de persona" type="text" required="required"
+            class="form-control" value="{{personalregistrado.id}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="nombre" class="col-2 col-form-label text-right">Numero de persona</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-hashtag"></i>
+          </div>
+          <input id="n_persona" name="nombre" placeholder="Numero de persona" type="text" required="required"
+            class="form-control" value="{{personalregistrado.n_persona}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="nombre" class="col-2 col-form-label text-right">Nombre</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-address-card"></i>
+          </div>
+          <input id="nombre" name="nombre" placeholder="Nombre" type="text" required="required" class="form-control"
+            value="{{personalregistrado.nombre}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="apellido" class="col-2 col-form-label text-right">Apellido paterno</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-address-card"></i>
+          </div>
+          <input id="ap_paterno" name="apellido" placeholder="Apellido paterno" type="text" class="form-control"
+            value="{{personalregistrado.ap_paterno}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="apellido" class="col-2 col-form-label text-right">Apellido materno</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-address-card"></i>
+          </div>
+          <input id="ap_materno" name="apellido" placeholder="Apellido materno" type="text" class="form-control"
+            value="{{personalregistrado.ap_materno}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="apellido" class="col-2 col-form-label text-right">DNI</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-address-card"></i>
+          </div>
+          <input id="dni" name="apellido" placeholder="DNI" type="text" class="form-control"
+            value="{{personalregistrado.dni}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fnac" class="col-2 col-form-label text-right">Fecha de Nacimiento</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-birthday-cake"></i>
+          </div>
+          <input id="f_nac" name="f_nac" placeholder="Fecha de nacimiento" type="date" required="required"
+            class="form-control" value="{{ personalregistrado.f_nac|date:'Y-m-d' }}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="empresa" class="col-2 col-form-label text-right">Proyecto</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <input id="proyecto" name="empresa" placeholder="Proyecto" type="text" class="form-control"
+            value="{{personalregistrado.proyecto}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="cargo" class="col-2 col-form-label text-right">Centro de coste</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-warehouse"></i>
+          </div>
+          <input id="centro_coste" name="cargo" placeholder="Centro de coste" type="text" class="form-control"
+            value="{{personalregistrado.centro_coste}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="empresa" class="col-2 col-form-label text-right">Tipo de trabajador</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-user-tag"></i>
+          </div>
+          <input id="tipo_trabajador" name="empresa" placeholder="Tipo de trabajador" type="text" class="form-control"
+            value="{{personalregistrado.tipo_trabajador}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label text-right">Clave de sexo</label>
+      <div class="col-8">
+        {% if personalregistrado.clave_sexo == "M" %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="clave_sexo" id="generoM" value="M" checked>
+          <label class="form-check-label" for="a">Masculino</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="clave_sexo" id="generoF" value="F">
+          <label class="form-check-label" for="b">Femenino</label>
+        </div>
+        {% else %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="clave_sexo" id="generoM" value="M">
+          <label class="form-check-label" for="a">Masculino</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="clave_sexo" id="generoF" value="F" checked>
+          <label class="form-check-label" for="b">Femenino</label>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fnac" class="col-2 col-form-label text-right">Fecha de alta</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <input id="f_alta" name="f_nac" placeholder="Fecha de alta" type="date" required="required"
+            class="form-control" value="{{ personalregistrado.f_alta|date:'Y-m-d' }}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fnac" class="col-2 col-form-label text-right">Fecha de baja</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-user-slash"></i>
+          </div>
+          <input id="f_baja" name="f_nac" placeholder="Fecha de baja" type="date" class="form-control"
+            value="{{ personalregistrado.f_baja|date:'Y-m-d' }}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="empresa" class="col-2 col-form-label text-right">Motivo de cese</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-user-edit"></i>
+          </div>
+          <input id="motivo_cese" name="empresa" placeholder="Motivo de cese" type="text" class="form-control"
+            value="{{personalregistrado.motivo_cese}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="empresa" class="col-2 col-form-label text-right">Cargo</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <input id="cargo" name="empresa" placeholder="Cargo" type="text" class="form-control"
+            value="{{personalregistrado.cargo}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="empresa" class="col-2 col-form-label text-right">Card ID</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-credit-card"></i>
+          </div>
+          <input id="card_id" name="empresa" placeholder="Card ID" type="text" class="form-control"
+            value="{{personalregistrado.card_id}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="empresa" class="col-2 col-form-label text-right">Area</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <input id="area" name="empresa" placeholder="Area" type="text" class="form-control"
+            value="{{personalregistrado.area}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="empresa" class="col-2 col-form-label text-right">Servicio</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-street-view"></i>
+          </div>
+          <input id="servicio" name="empresa" placeholder="Servicio" type="text" class="form-control"
+            value="{{personalregistrado.servicio}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="empresa" class="col-2 col-form-label text-right">Supervision</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <input id="supervision" name="empresa" placeholder="Supervision" type="text" class="form-control"
+            value="{{personalregistrado.supervicion}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label text-right">Guardia</label>
+      <div class="col-8">
+        {% if personalregistrado.guardia == 'A' %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoM" value="A" checked>
+          <label class="form-check-label" for="generoM">A</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoF" value="B">
+          <label class="form-check-label" for="generoF">B</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoF" value="C">
+          <label class="form-check-label" for="generoF">C</label>
+        </div>
+        {% elif personalregistrado.guardia == 'B' %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoM" value="A">
+          <label class="form-check-label" for="generoM">A</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoF" value="B" checked>
+          <label class="form-check-label" for="generoF">B</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoF" value="C">
+          <label class="form-check-label" for="generoF">C</label>
+        </div>
+        {% else %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoM" value="A">
+          <label class="form-check-label" for="generoM">A</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoF" value="B">
+          <label class="form-check-label" for="generoF">B</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="guardia" id="generoF" value="C" checked>
+          <label class="form-check-label" for="generoF">C</label>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="correo" class="col-2 col-form-label text-right">Correo</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <input id="correo" name="correo" placeholder="Correo" type="email" class="form-control"
+            value="{{personalregistrado.correo}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="telefono" class="col-2 col-form-label text-right">Telefono</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-phone"></i>
+          </div>
+          <input id="telefono" name="telefono" placeholder="Telefono" type="number" class="form-control"
+            value="{{personalregistrado.n_celular}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="offset-4 col-8">
+        <button name="actualizar" type="button" class="btn btn-warning" onclick="actualizarPersonal()"><i
+            class="fa fa-edit"></i> Actualizar
+          Personal</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% load static %}
+<script src="{% static 'actualizar.js' %}"></script>
+{% endblock%}

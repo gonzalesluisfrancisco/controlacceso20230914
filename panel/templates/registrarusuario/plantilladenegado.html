@@ -1,0 +1,15 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<div class="right_col" role="main">
+    {%if r2%}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>r2</strong> Revise todos los campos.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    <h1>Su cuenta no cumple los requisitos para crear nuevas cuentas</h1>
+</div>
+{% endblock%}

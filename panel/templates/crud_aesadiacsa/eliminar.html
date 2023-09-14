@@ -1,0 +1,31 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <h1>Eliminar Personal</h1>
+
+    <form action="eliminar" method="POST">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="id" class="col-4 col-form-label">CardID Personal</label> 
+            <div class="col-8">
+            <div class="input-group">
+                <div class="input-group-addon">
+                <i class="fa fa-list-ol"></i>
+                </div> 
+                <select id="cardidHex" name="cardidHex">
+                {% for u in personalregistrado %}
+                    <option value="{{u.cardidHex}}">{{u.cardidHex}}</option>    
+                {% endfor %}
+                </select>
+            </div>
+            </div>
+        </div> 
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+              <button name="eliminar" type="submit" class="btn btn-danger"><i class="fa fa-user-times"></i> Eliminar Personal</button>
+            </div>
+          </div>        
+    </form>
+</div>
+{% endblock%}

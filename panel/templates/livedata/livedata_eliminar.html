@@ -1,0 +1,107 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <h1>Eliminar Livedata</h1>
+
+    <form action="eliminar" method="POST">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="id" class="col-4 col-form-label">CardID Personal Livedata</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-list-ol"></i>
+                    </div>
+                    <select id="cardidHex" name="cardidHex" class="form-control" onchange="ObtenerDatosCardID()">
+                        <option value="--------">--------</option>
+                        {% for u in livedata %}
+                        <option value="{{u.cardidHex}}">{{u.cardidHex}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="ubicacion" class="col-4 col-form-label">Ubicacion</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-map-marked"></i>
+                    </div>
+                    <input id="ubicacion" name="informacion" placeholder="Ubicacion" type="text" required="required"
+                        class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="nombre" class="col-4 col-form-label">Nombre</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <input id="nombre" name="informacion" placeholder="Nombre" type="text" required="required"
+                        class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="apellido" class="col-4 col-form-label">Apellido</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <input id="apellido" name="informacion" placeholder="Apellido" type="text" class="form-control"
+                        disabled>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="cargo" class="col-4 col-form-label">Cargo</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-user-tag"></i>
+                    </div>
+                    <input id="cargo" name="informacion" placeholder="Cargo" type="text" class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="fnac" class="col-4 col-form-label">Fecha de Ingreso</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <input id="f_ingreso" name="informacion" placeholder="Fecha de ingreso" type="text"
+                        required="required" class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="fnac" class="col-4 col-form-label">Hora de Ingreso</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <input id="h_ingreso" name="informacion" placeholder="Hora de ingreso" type="text"
+                        required="required" class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+                <button name="eliminar" type="button" class="btn btn-danger" onclick="EliminarLivedata()"><i
+                        class="fa fa-user-times"></i>&nbsp;&nbsp;Eliminar
+                    Livedata</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock%}

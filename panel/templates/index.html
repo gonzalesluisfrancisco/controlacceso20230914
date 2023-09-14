@@ -1,0 +1,18 @@
+{% extends 'index_master.html' %}
+
+{% block content %}
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <h1>Resumen del personal en mina</h1>
+  <div class="row" style="display: inline-block;">
+    <div class="tile_count">
+      <div class="col-md-12 col-sm-12  tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total de personal en mina</span>
+        <div class="count">{{total}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+{% endblock %}

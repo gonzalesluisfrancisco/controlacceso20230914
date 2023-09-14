@@ -1,0 +1,108 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+<div class="right_col" role="main">
+  {%if r2%}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>r2</strong> Revise todos los campos.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endif %}
+  <h1>Agregar Livedata</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group row">
+      <label for="cardid" class="col-4 col-form-label">Card ID</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-credit-card"></i>
+          </div>
+          <input id="cardid" name="cardid" placeholder="Card Id" type="text" required="required" class="form-control"
+            onchange="BusquedaDatos()">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="ubicacion" class="col-4 col-form-label">Ubicacion</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-map-marked"></i>
+          </div>
+          <input id="ubicacion" name="ubicacion" placeholder="Ubicacion" type="text" required="required"
+            class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="nombre" class="col-4 col-form-label">Nombre</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-user"></i>
+          </div>
+          <input id="nombre" name="nombre" placeholder="Nombre" type="text" required="required" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="apellido" class="col-4 col-form-label">Apellido</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-user"></i>
+          </div>
+          <input id="apellido" name="apellido" placeholder="Apellido" type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="cargo" class="col-4 col-form-label">Cargo</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-user-tag"></i>
+          </div>
+          <input id="cargo" name="cargo" placeholder="Cargo" type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fnac" class="col-4 col-form-label">Fecha de Ingreso</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-calendar"></i>
+          </div>
+          <input id="f_ingreso" name="f_ingreso" placeholder="Fecha de ingreso" type="date" required="required"
+            class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fnac" class="col-4 col-form-label">Hora de Ingreso</label>
+      <div class="col-8">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <input id="h_ingreso" name="h_ingreso" placeholder="Hora de ingreso" type="time" required="required"
+            class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-4 col-8">
+        <button name="submit" type="button" onclick="AgregarDatos()" class="btn btn-primary"><i
+            class="fa fa-user-plus"></i> Agregar
+          Livedata</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock%}
