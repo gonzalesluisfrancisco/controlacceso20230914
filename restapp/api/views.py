@@ -681,13 +681,19 @@ class restappViewSet(ModelViewSet):
                 if (user is None):
                     debugPrint("Usuario no encontrado")
             except:
-                debugPrint("Usuario no encontrado except")
-                debugPrint("1")
-                debugPrint("2")
-                debugPrint("3")
+                t1 = datetime.now()
                 guardarHistorialNoRegistrados(reg)
+                t2 = datetime.now()
                 actualizarLiveDataNoRegistrado(reg)
+                t3 = datetime.now()
                 guardarNoRegistrados(reg)
+                t4 = datetime.now()
+                print(t1-t0)
+                print(t2-t1)
+                print(t3-t2)
+                print(t4-t3)
+                
+                debugPrint("Usuario no encontrado except")
                 continue
 
             #####################################
