@@ -655,21 +655,23 @@ class restappViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def create(self, request):
+        t0 = datetime.now()
         data = request.data
-        '''
+        t1 = datetime.now()
         # Validacion de datos
         try:
         
             # debugPrint('DATA QUE LLEGA A LA VISTA CREATE POR DEFECTO')
             # debugPrint(data)
             registros = validacionDataJson(data)
+            t2 = datetime.now()
             N = len(registros)
             if N == 0:
                 return JsonResponse({'error': 'Verificar campos'}, status=400)
         except:
             return JsonResponse({'error': 'Error inesperado en campos'}, status=400)
 
-        
+        t3 = datetime.now()
         for i in range(N):
             reg = registros[i]
             rcardID = reg[1]
@@ -701,5 +703,10 @@ class restappViewSet(ModelViewSet):
                     "Error en actualizar en base de datos. Se registrará en 'No Registrados' e 'Historial'.")
                 continue
         # super().create(request)
-        '''
+        t4 = datetime.now()
+        print(t1-t0)
+        print(t2-t1)
+        print(t3-t2)
+        print(t4-t3)
+        
         return JsonResponse({'envio': 'OK'}, status=200)
