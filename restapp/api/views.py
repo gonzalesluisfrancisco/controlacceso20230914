@@ -656,9 +656,10 @@ class restappViewSet(ModelViewSet):
 
     def create(self, request):
         data = request.data
-
+        '''
         # Validacion de datos
         try:
+        
             # debugPrint('DATA QUE LLEGA A LA VISTA CREATE POR DEFECTO')
             # debugPrint(data)
             registros = validacionDataJson(data)
@@ -668,6 +669,7 @@ class restappViewSet(ModelViewSet):
         except:
             return JsonResponse({'error': 'Error inesperado en campos'}, status=400)
 
+        
         for i in range(N):
             reg = registros[i]
             rcardID = reg[1]
@@ -699,4 +701,5 @@ class restappViewSet(ModelViewSet):
                     "Error en actualizar en base de datos. Se registrará en 'No Registrados' e 'Historial'.")
                 continue
         # super().create(request)
+        '''
         return JsonResponse({'envio': 'OK'}, status=200)
